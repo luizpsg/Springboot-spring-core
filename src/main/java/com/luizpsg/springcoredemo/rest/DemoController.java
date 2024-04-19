@@ -13,6 +13,8 @@ public class DemoController {
   //define a private field for the dependency
   private Coach myCoach;
 
+  private Coach anotherCoach;
+
   public DemoController() {
   }
 
@@ -25,12 +27,18 @@ public class DemoController {
 
   //USING @Primary
   @Autowired
-  public DemoController(Coach theCoach) {
+  public DemoController(Coach theCoach, Coach theAnotherCoach) {
     myCoach = theCoach;
+    anotherCoach = theAnotherCoach;
   }
 
   @GetMapping("/dailyworkout")
   public String getDailyWorkout() {
     return myCoach.getDailyWorkout();
+  }
+
+  @GetMapping("/check")
+  public String check() {
+    return "Comparing beans: myCoach == anotherCoach, " + (myCoach == anotherCoach);
   }
 }
