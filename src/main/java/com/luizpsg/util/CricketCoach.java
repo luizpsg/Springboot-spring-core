@@ -1,4 +1,4 @@
-package com.luizpsg.springcoredemo;
+package com.luizpsg.util;
 
 import org.springframework.stereotype.Component;
 

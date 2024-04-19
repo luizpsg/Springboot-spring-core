@@ -1,4 +1,4 @@
-package com.luizpsg.springcoredemo;
+package com.luizpsg.util;
 
 public interface Coach {
   String getDailyWorkout();
