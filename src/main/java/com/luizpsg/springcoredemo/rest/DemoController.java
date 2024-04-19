@@ -1,6 +1,7 @@
 package com.luizpsg.springcoredemo.rest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -12,8 +13,6 @@ public class DemoController {
   
   //define a private field for the dependency
   private Coach myCoach;
-
-  private Coach anotherCoach;
 
   public DemoController() {
   }
@@ -27,9 +26,9 @@ public class DemoController {
 
   //USING @Primary
   @Autowired
-  public DemoController(Coach theCoach, Coach theAnotherCoach) {
+  public DemoController(@Qualifier("aquatic") Coach theCoach) {
+    System.out.println("In constructor: " + getClass().getSimpleName());
     myCoach = theCoach;
-    anotherCoach = theAnotherCoach;
   }
 
   @GetMapping("/dailyworkout")
@@ -37,8 +36,4 @@ public class DemoController {
     return myCoach.getDailyWorkout();
   }
 
-  @GetMapping("/check")
-  public String check() {
-    return "Comparing beans: myCoach == anotherCoach, " + (myCoach == anotherCoach);
-  }
 }
